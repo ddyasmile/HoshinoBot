@@ -31,8 +31,8 @@ from .argparse.argtype import *
 from .battlemaster import BattleMaster
 from .exception import *
 
-plt.style.use('seaborn-pastel')
-plt.rcParams['font.family'] = ['DejaVuSans', 'Microsoft YaHei', 'SimSun', ]
+# plt.style.use('seaborn-pastel')
+# plt.rcParams['font.family'] = ['DejaVuSans', 'Microsoft YaHei', 'SimSun', ]
 
 USAGE_ADD_CLAN = '!建会 N公会名 S服务器代号'
 USAGE_ADD_MEMBER = '!入会 昵称 (@qq)'
