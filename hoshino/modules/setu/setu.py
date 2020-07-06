@@ -9,7 +9,7 @@ from nonebot.exceptions import CQHttpError
 from hoshino import R, Service, Privilege
 from hoshino.util import FreqLimiter, DailyNumberLimiter
 
-_max = 5
+_max = 999
 EXCEED_NOTICE = f'您今天已经冲过{_max}次了，请明早5点后再来！'
 _nlmt = DailyNumberLimiter(_max)
 _flmt = FreqLimiter(5)
