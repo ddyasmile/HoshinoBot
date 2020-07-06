@@ -3,7 +3,7 @@ from datetime import datetime
 from hoshino import util
 from hoshino.service import Service
 
-sv = Service('hourcall', enable_on_default=True)
+sv = Service('hourcall', enable_on_default=False)
 
 def get_hour_call():
     """从HOUR_CALLS中挑出一组时报，每日更换，一日之内保持相同"""
@@ -18,8 +18,6 @@ async def hour_call():
     now = datetime.now(pytz.timezone('Asia/Shanghai'))
     # if 2 <= now.hour <= 4:
         # return  # 宵禁 免打扰
-    if now.hour % 6 == 0:
-        await sv.broadcast(str(R.img(f"yao{random.randint(1, 4)}.png").cqcode), 'hourcallyao', 0)
 
     msg = get_hour_call()[now.hour]
     await sv.broadcast(msg, 'hourcall', 0)
