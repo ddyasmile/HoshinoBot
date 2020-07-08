@@ -1,9 +1,8 @@
 import pytz
 import random
 from datetime import datetime
-from hoshino import util
-from hoshino.res import R
-from hoshino.service import Service
+import hoshino
+from hoshino import util, R, Service
 
 sv = Service('hourcallyao', enable_on_default=False, help_='提醒买药')
 tz = pytz.timezone('Asia/Shanghai')
