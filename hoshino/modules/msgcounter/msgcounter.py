@@ -56,14 +56,14 @@ async def _msg_bus(bot, ctx):
     return
 
 @sv.on_fullmatch(('水量', '氵量'))
-async def query_num(session:CommandSession):
-    sendmsg = '今日氵量排位（前五）：\n' + query_msgcounter(session.ctx['group_id'], 5)
-    await session.send(sendmsg)
+async def query_num(bot, ev):
+    sendmsg = '今日氵量排位（前五）：\n' + query_msgcounter(ev.group_id, 5)
+    await bot.send(ev, sendmsg)
 
 @sv.on_fullmatch(('完整水量排位', '完整氵量排位', '完整水量', '完整氵量'))
-async def query_num_all(session:CommandSession):
-    sendmsg = '今日氵量排位：\n' + query_msgcounter(session.ctx['group_id'], 999)
-    await session.send(sendmsg)
+async def query_num_all(bot, ev):
+    sendmsg = '今日氵量排位：\n' + query_msgcounter(ev.group_id, 999)
+    await bot.send(ev, sendmsg)
 
 @sv.scheduled_job('cron', hour='0')
 def clear_counter():
