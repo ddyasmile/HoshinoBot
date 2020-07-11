@@ -14,6 +14,7 @@ sp = BiliSpider()
 
 _video_cache: Dict[ str, ItemsCache ] = {}
 
+
 async def switch_subscribe(bot, ev: CQEvent, sub: bool):
     action_tip = "订阅" if sub else "退订"
     if not priv.check_priv(ev, priv.ADMIN):
@@ -39,15 +40,22 @@ async def set_unsubscribe(bot, ev: CQEvent):
 
 @sv.on_prefix(('B站订阅查询'))
 async def search_subscribe(bot, ev: CQEvent):
-    await video_poller(sp, sv, send_msg=False)
+    if not _video_cache:
+        await video_poller(sp, sv, send_msg=False)
     mid_list = ss.search_subscription(ev.group_id)
     msg = f'群{ev.group_id}订阅了UP主：'
-    # print(mid_list)
     for mid in mid_list:
-        # print(mid)
-        # print(_video_cache[mid].item_cache)
-        print(_video_cache[mid].item_cache[0].author)
-        author = _video_cache[mid].item_cache[0].author
+        author: str = ""
+        try:
+            author = _video_cache[mid].item_cache[0].author
+        except:
+            items_cache = ItemsCache()
+            await asyncio.sleep(1)
+            await sp.get_update(mid, items_cache)
+            copied_cache = copy.deepcopy(items_cache)
+            _video_cache[mid] = copied_cache
+            sv.logger.info(f'更新了UP主{mid}的视频缓存')
+            author = _video_cache[mid].item_cache[0].author
         msg += f'\n{author} UID：{mid}'
     await bot.send(ev, msg, at_sender=True)
 
@@ -61,7 +69,6 @@ def get_format(mid: str, items: List[Item]) -> str:
 
 async def video_poller(spider: BiliSpider, sv: Service, send_msg=True, interval_time=1):
     mid_list = ss.get_mids()
-    print(mid_list)
     if not _video_cache:
         for mid in mid_list:
             items_cache = ItemsCache()
@@ -69,9 +76,6 @@ async def video_poller(spider: BiliSpider, sv: Service, send_msg=True, interval_
             await spider.get_update(mid, items_cache)
             copied_cache = copy.deepcopy(items_cache)
             _video_cache[mid] = copied_cache
-            print(copied_cache is items_cache)
-            print(copied_cache.item_cache is items_cache.item_cache)
-            print(items_cache.item_cache)
         sv.logger.info('视频缓存为空，已加载至最新')
         return
     for mid in mid_list:

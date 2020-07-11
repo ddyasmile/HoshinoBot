@@ -26,7 +26,6 @@ def _load_subscriber_config():
             config = json.loads(config)
             return config
     except Exception as e:
-        print(e)
         return {}
 
 def _save_subscriber_config(subscriber):
@@ -47,15 +46,12 @@ class Subscriber:
 
     def add_subscription(self, mid, group_id):
         if mid not in self.config:
-            print(mid)
             self.config[mid] = list()
         if group_id not in self.config[mid]:
             self.config[mid].append(group_id)
             _save_subscriber_config(self)
 
     def del_subscription(self, mid, group_id):
-        print(self.config)
-        print(mid)
         if mid not in self.config:
             return
         if group_id in self.config[mid]:
