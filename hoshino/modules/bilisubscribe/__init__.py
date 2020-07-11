@@ -56,7 +56,7 @@ def get_format(mid: str, items: List[Item]) -> str:
     baseUrl = "https://www.bilibili.com/video/"
     content = [ f'{MessageSegment.image(item.cover)}\n{item.title}\n{baseUrl}{item.bvid}' for item in items ]
     author = items[0].author
-    return f'UP主{author}{mid}更新了视频：\n' + '\n'.join(content)
+    return f'UP主{author} UID：{mid}更新了视频：\n' + '\n'.join(content)
 
 
 async def video_poller(spider: BiliSpider, sv: Service, send_msg=True, interval_time=1):
@@ -67,7 +67,10 @@ async def video_poller(spider: BiliSpider, sv: Service, send_msg=True, interval_
             items_cache = ItemsCache()
             await asyncio.sleep(interval_time)
             await spider.get_update(mid, items_cache)
-            _video_cache[mid] = copy.deepcopy(items_cache)
+            copied_cache = copy.deepcopy(items_cache)
+            _video_cache[mid] = copied_cache
+            print(copied_cache is items_cache)
+            print(copied_cache.item_cache is items_cache.item_cache)
             print(items_cache.item_cache)
         sv.logger.info('视频缓存为空，已加载至最新')
         return

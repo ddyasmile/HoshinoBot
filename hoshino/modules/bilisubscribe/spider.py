@@ -3,8 +3,8 @@ This is a spider that inquires Bilibili videos from www.bilibili.com.
 """
 
 import abc
-from dataclasses import dataclass
-from typing import List, Union
+from dataclasses import dataclass, field
+from typing import List, Union, Set
 
 from bs4 import BeautifulSoup
 from hoshino import aiorequests
@@ -22,8 +22,8 @@ class Item:
 
 @dataclass
 class ItemsCache:
-    bvid_cache = set()
-    item_cache = []
+    bvid_cache: Set[str] = field(default_factory=set)
+    item_cache: List[Item] = field(default_factory=list)
 
 
 class BiliSpider(abc.ABC):
@@ -54,10 +54,10 @@ class BiliSpider(abc.ABC):
     async def get_update(cls, mid: str, cache: ItemsCache) -> List[Item]:
         resp = await cls.get_response(mid)
         items = await cls.get_items(resp)
-        updates = [ i for i in items if i.bvid not in ItemsCache.bvid_cache ]
+        updates = [ i for i in items if i.bvid not in cache.bvid_cache ]
         if updates:
-            ItemsCache.bvid_cache = set(i.bvid for i in items)
-            ItemsCache.item_cache = items
+            cache.bvid_cache = set(i.bvid for i in items)
+            cache.item_cache = items
         return updates
 
     @classmethod
