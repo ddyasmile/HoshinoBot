@@ -39,14 +39,15 @@ class BiliSpider(abc.ABC):
     @staticmethod
     async def get_items(resp: aiorequests.AsyncResponse) -> List[Item]:
         content = await resp.json()
-        items = [
-            Item(
-                bvid=n["bvid"],
-                author=n["author"],
-                cover=f'https:{n["pic"]}',
-                title=n["title"]
-            ) for n in content["data"]["list"]["vlist"]
-        ]
+        if content["code"] == 0:
+            items = [
+                Item(
+                    bvid=n["bvid"],
+                    author=n["author"],
+                    cover=f'https:{n["pic"]}',
+                    title=n["title"]
+                ) for n in content["data"]["list"]["vlist"]
+            ]
         return items
 
     @classmethod
@@ -58,6 +59,12 @@ class BiliSpider(abc.ABC):
             ItemsCache.bvid_cache = set(i.bvid for i in items)
             ItemsCache.item_cache = items
         return updates
+
+    @classmethod
+    async def check_mid(cls, mid: str) -> bool:
+        resp = await cls.get_response(mid)
+        content = await resp.json()
+        return content["code"] == 0
 
 
 
