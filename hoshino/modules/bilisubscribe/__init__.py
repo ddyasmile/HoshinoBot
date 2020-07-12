@@ -41,6 +41,7 @@ async def set_unsubscribe(bot, ev: CQEvent):
 @sv.on_prefix(('B站订阅查询'))
 async def search_subscribe(bot, ev: CQEvent):
     if not _video_cache:
+        await bot.send(ev, "第一次查询会比较慢，请稍等一会儿", at_sender=True)
         await video_poller(sp, sv, send_msg=False)
     mid_list = ss.search_subscription(ev.group_id)
     msg = f'群{ev.group_id}订阅了UP主：'
@@ -80,14 +81,23 @@ async def video_poller(spider: BiliSpider, sv: Service, send_msg=True, interval_
         return
     for mid in mid_list:
         await asyncio.sleep(interval_time)
+        if mid not in _video_cache:
+            _video_cache[mid] = ItemsCache()
+            videos = await spider.get_update(mid, _video_cache[mid])
+            if not videos:
+                sv.logger.info(f'未拉取到UP主{mid}的视频')
+            else:
+                sv.logger.info(f'拉取到UP主{mid} {len(videos)}条视频')
+            continue
+
         videos = await spider.get_update(mid, _video_cache[mid])
         if not videos:
             sv.logger.info(f'未检索到UP主{mid}更新')
             continue
-        sv.logger.info(f'检索到UP主{mid}{len(videos)}条更新')
+        sv.logger.info(f'检索到UP主{mid} {len(videos)}条更新')
         if send_msg:
             group_list = ss.get_groups(mid)
-            enable_group_list = sv.get_enable_groups()
+            enable_group_list = await sv.get_enable_groups()
             for group_id in group_list:
                 if group_id in enable_group_list:
                     msg = get_format(mid, videos)
@@ -104,21 +114,25 @@ async def video_poller(spider: BiliSpider, sv: Service, send_msg=True, interval_
                 
 
 
-@sv.scheduled_job('interval', minutes=5)
-async def poll_videos():
+# @sv.scheduled_job('interval', minutes=5)
+@sv.on_prefix(('pull'))
+async def poll_videos(bot, ev: CQEvent):
     await video_poller(sp, sv)
 
 
-async def poll_videos_by_mid(bot, ev: CQEvent, spider: BiliSpider, max_num=3):
+async def poll_videos_by_mid(bot, ev: CQEvent, sv: Service ,spider: BiliSpider, max_num=3):
     mid = util.normalize_str(ev.message.extract_plain_text())
+    if mid not in _video_cache:
+        _video_cache[mid] = ItemsCache()
     await spider.get_update(mid, _video_cache[mid])
+    sv.logger.info(f'拉取了UP主{mid}的视频')
     videos = _video_cache[mid].item_cache[0:max_num]
     await bot.send(ev, get_format(mid, videos), at_sender=True)
 
 
 @sv.on_prefix(('新视频'))
 async def poll_latest_videos(bot, ev: CQEvent):
-    await poll_videos_by_mid(bot, ev, sp)
+    await poll_videos_by_mid(bot, ev, sv, sp)
 
     
 
