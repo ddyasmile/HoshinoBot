@@ -114,9 +114,8 @@ async def video_poller(spider: BiliSpider, sv: Service, send_msg=True, interval_
                 
 
 
-# @sv.scheduled_job('interval', minutes=5)
-@sv.on_prefix(('pull'))
-async def poll_videos(bot, ev: CQEvent):
+@sv.scheduled_job('interval', minutes=5)
+async def poll_videos():
     await video_poller(sp, sv)
 
 
