@@ -1,5 +1,5 @@
 # 统计各个群组群元的发言数量
-
+import asyncio
 from typing import Dict
 
 import hoshino
@@ -61,10 +61,11 @@ async def query_num(bot, ev):
     await bot.send(ev, sendmsg)
 
 @sv.on_fullmatch(('完整水量排位', '完整氵量排位', '完整水量', '完整氵量'))
-async def query_num_all(bot, ev):
+  def query_num_all(bot, ev):
     sendmsg = '今日氵量排位：\n' + query_msgcounter(ev.group_id, 999)
     await bot.send(ev, sendmsg)
 
 @sv.scheduled_job('cron', hour='0')
-def clear_counter():
+async def clear_counter():
     _msgcounter.clear()
+    await asyncio.sleep(0.1)
