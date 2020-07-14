@@ -28,7 +28,8 @@ def get_setu():
     return setu_gener.__next__()
 
 
-@sv.on_rex(r'不够[涩瑟色]|[涩瑟色]图|来一?[点份张].*[涩瑟色]|再来[点份张]|看过了|铜')
+# @sv.on_rex(r'不够[涩瑟色]|[涩瑟色]图|来一?[点份张].*[涩瑟色]|再来[点份张]|看过了|铜')
+@sv.on_fullmatch(('来一张色图'))
 async def setu(bot, ev):
     """随机叫一份涩图，对每个用户有冷却时间"""
     uid = ev['user_id']

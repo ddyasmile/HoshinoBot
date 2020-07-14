@@ -17,7 +17,7 @@ _subscriber_config_dir = os.path.expanduser('~/.hoshino/subscriber_config/')
 os.makedirs(_subscriber_config_dir, exist_ok=True)
 
 def _load_subscriber_config():
-    config_file = os.path.join(_subscriber_config_dir, 'config.json')
+    config_file = os.path.join(_subscriber_config_dir, 'video.json')
     if not os.path.exists(config_file):
         return {}
     try:
@@ -29,7 +29,7 @@ def _load_subscriber_config():
         return {}
 
 def _save_subscriber_config(subscriber):
-    config_file = os.path.join(_subscriber_config_dir, 'config.json')
+    config_file = os.path.join(_subscriber_config_dir, 'video.json')
     with open(config_file, 'w', encoding='utf8') as f:
         json.dump(
             json.dumps(subscriber.config),

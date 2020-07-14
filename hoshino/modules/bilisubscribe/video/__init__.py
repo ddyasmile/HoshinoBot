@@ -8,9 +8,9 @@ from .spider import *
 from .subscriber import *
 from hoshino.typing import *
 
-sv = Service('bili-subscribe', bundle='Bilibili订阅', help_='UP主更新提醒')
+sv = Service('bili-subscribe-video', bundle='Bilibili订阅', help_='UP主更新提醒')
 ss = Subscriber()
-sp = BiliSpider()
+sp = BiliVideoSpider()
 
 _video_cache: Dict[ str, ItemsCache ] = {}
 
@@ -27,18 +27,18 @@ async def switch_subscribe(bot, ev: CQEvent, sub: bool):
         sv.logger.info(f'群{ev.group_id}{action_tip}了UP主{mid}')
         await bot.send(ev, f'已为群{ev.group_id}{action_tip}了UP主{mid}', at_sender=True)
 
-@sv.on_prefix(('B站订阅'))
+@sv.on_prefix(('B站订阅', '视频订阅', '订阅视频'))
 async def set_subcribe(bot, ev: CQEvent):
     mid = util.normalize_str(ev.message.extract_plain_text())
     check_flag = await sp.check_mid(mid)
     if check_flag:
         await switch_subscribe(bot, ev, sub=True)
 
-@sv.on_prefix(('B站退订'))
+@sv.on_prefix(('B站退订', '视频退订', '退订视频'))
 async def set_unsubscribe(bot, ev: CQEvent):
     await switch_subscribe(bot, ev, sub=False)
 
-@sv.on_prefix(('B站订阅查询'))
+@sv.on_prefix(('B站订阅查询', '视频订阅查询'))
 async def search_subscribe(bot, ev: CQEvent):
     if not _video_cache:
         await bot.send(ev, "第一次查询会比较慢，请稍等一会儿", at_sender=True)
@@ -68,7 +68,7 @@ def get_format(mid: str, items: List[Item]) -> str:
     return f'UP主{author} UID：{mid}更新了视频：\n' + '\n'.join(content)
 
 
-async def video_poller(spider: BiliSpider, sv: Service, send_msg=True, interval_time=1):
+async def video_poller(spider: BiliVideoSpider, sv: Service, send_msg=True, interval_time=1):
     mid_list = ss.get_mids()
     if not _video_cache:
         for mid in mid_list:
@@ -119,7 +119,7 @@ async def poll_videos():
     await video_poller(sp, sv)
 
 
-async def poll_videos_by_mid(bot, ev: CQEvent, sv: Service ,spider: BiliSpider, max_num=3):
+async def poll_videos_by_mid(bot, ev: CQEvent, sv: Service ,spider: BiliVideoSpider, max_num=3):
     mid = util.normalize_str(ev.message.extract_plain_text())
     if mid not in _video_cache:
         _video_cache[mid] = ItemsCache()

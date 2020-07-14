@@ -26,7 +26,7 @@ class ItemsCache:
     item_cache: List[Item] = field(default_factory=list)
 
 
-class BiliSpider(abc.ABC):
+class BiliVideoSpider(abc.ABC):
     url1 = "https://api.bilibili.com/x/space/arc/search?mid="
     url2 = "&ps=20&tid=0&pn=1&keyword=&order=pubdate&jsonp=jsonp"
     
