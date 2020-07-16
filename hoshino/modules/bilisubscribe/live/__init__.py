@@ -69,7 +69,7 @@ def get_format(rid: str, item: Item, live: bool) -> str:
     else:
         content = f'{MessageSegment.image(item.cover)}\n{item.title}\n{baseUrl}{rid}'
     author = item.author
-    return f'\n{content}\n主播 {author} {action_tip}了'
+    return f'{content}\n主播 {author} {action_tip}了'
 
 
 async def live_poller(spider: BiliLiveSpider, sv: Service, send_msg=True, interval_time=1):
@@ -100,10 +100,10 @@ async def live_poller(spider: BiliLiveSpider, sv: Service, send_msg=True, interv
         if send_msg:
             status_change = False
             msg = ""
-            if prev_status == 0 and _live_cache[rid].live_status == 1:
+            if prev_status != 1 and _live_cache[rid].live_status == 1:
                 msg = get_format(rid, _live_cache[rid], True)
                 status_change = True
-            elif prev_status == 1 and _live_cache[rid].live_status == 0:
+            elif prev_status == 1 and _live_cache[rid].live_status != 1:
                 msg = get_format(rid, _live_cache[rid], False)
                 status_change = True
             else:
