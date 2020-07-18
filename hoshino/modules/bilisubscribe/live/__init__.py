@@ -56,7 +56,7 @@ async def search_subscribe(bot, ev: CQEvent):
             _live_cache[rid] = copy.deepcopy(item)
             sv.logger.info(f'更新了直播间{rid}的缓存')
             author = _live_cache[rid].author
-        msg += f'主播{author} 直播间号：{rid}'
+        msg += f'\n主播 {author} 直播间号：{rid}'
     await bot.send(ev, msg, at_sender=True)
 
 
