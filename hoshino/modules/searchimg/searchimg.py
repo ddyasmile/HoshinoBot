@@ -16,47 +16,47 @@ sv = Service('picfinder', help_='''
 
 api_key="da234a4bc5f6cc1b28b9995f3c97b9923ababad3"#https://saucenao.com/自行申请
 EnableRename=False
-minsim='80!'#相似度下限，低于下限不显示结果(80!指80%)
+minsim='65!'#相似度下限，低于下限不显示结果(80!指80%)
 thumbSize = (250,250)
 
 #启用或禁用索引，1：启用，0：禁用
-index_hmags='0'#0: H-Magazines  (Last Updated: December 2010) 不完整 - 大部分被 #18 替代
-index_reserved='0'#1
-index_hcg='0'#2: H-Game CG  (Last Updated: June 2011) 不完整 - 大部分被 #18 替代
-index_ddbobjects='0'#3: DoujinshiDB  (Last Updated: January 2011) 不完整 - 大部分被 #18 替代
-index_ddbsamples='0'#4
+index_hmags='1'#0: H-Magazines  (Last Updated: December 2010) 不完整 - 大部分被 #18 替代
+index_reserved='1'#1
+index_hcg='1'#2: H-Game CG  (Last Updated: June 2011) 不完整 - 大部分被 #18 替代
+index_ddbobjects='1'#3: DoujinshiDB  (Last Updated: January 2011) 不完整 - 大部分被 #18 替代
+index_ddbsamples='1'#4
 index_pixiv='1'#5: pixiv Images  (Continuously Updated) 相当完整 - All accessible images are added every few hours
 index_pixivhistorical='1'#6: pixiv Historical
-index_reserved='0'#7
+index_reserved='1'#7
 index_seigaillust='1'#8: Nico Nico Seiga  (Continuously Updated) 相当完整 - All accessible images are added every few hours
-index_danbooru='0'#9: Danbooru  (Continuously Updated) 相当完整 - All accessible images are added every few minutes
+index_danbooru='1'#9: Danbooru  (Continuously Updated) 相当完整 - All accessible images are added every few minutes
 index_drawr='1'#10: drawr Images  (Site Closed December 2, 2019) Complete - All accessible images were added before site shut down
 index_nijie='1'#11: Nijie Images  (Continuously Updated) 相当完整 - All accessible images are added every few hours
-index_yandere='0'#12: Yande.re  (Continuously Updated) 相当完整 - All accessible images are added every few minutes
-index_animeop='0'#13
-index_reserved='0'#14
-index_shutterstock='0'#15: Shutterstock  (Last Updated: August 2015) 不完整 (禁用) - Automatic updater broken, index disabled temporarily
-index_fakku='0'#16: FAKKU  (On Hold) 不完整 - Site Changes Broke Update Script
-index_hmisc='0'#18,38: H-Misc  (Continuously Updated) 相当完整 - Accessible Doujins, Magazines, HCG, etc are added every few hours.
-index_2dmarket='0'#19: 2D-Market  (Continuously Updated) 相当完整 - All accessible images are added every few hours
-index_medibang='0'#20: MediBang  (Last Updated Late 2019) 落后... - Updater Broken
+index_yandere='1'#12: Yande.re  (Continuously Updated) 相当完整 - All accessible images are added every few minutes
+index_animeop='1'#13
+index_reserved='1'#14
+index_shutterstock='1'#15: Shutterstock  (Last Updated: August 2015) 不完整 (禁用) - Automatic updater broken, index disabled temporarily
+index_fakku='1'#16: FAKKU  (On Hold) 不完整 - Site Changes Broke Update Script
+index_hmisc='1'#18,38: H-Misc  (Continuously Updated) 相当完整 - Accessible Doujins, Magazines, HCG, etc are added every few hours.
+index_2dmarket='1'#19: 2D-Market  (Continuously Updated) 相当完整 - All accessible images are added every few hours
+index_medibang='1'#20: MediBang  (Last Updated Late 2019) 落后... - Updater Broken
 index_anime='1'#21: Anime  (Continuously Updated) 相当完整 - New releases added automaticly
-index_hanime='0'#22: H-Anime  (Continuously Updated) 相当完整 - New releases added automaticly, slowly filling out backolog of older material.
-index_movies='0'#23: Movies  (Periodic) 工作正在进行中 - slowly filling out backlog of old material
-index_shows='0'#24: Shows  (Periodic) 工作正在进行中 - slowly filling out backlog of old material
-index_gelbooru='0'#25: Gelbooru  (Continuously Updated) 相当完整 - All accessible images are added every few minutes
-index_konachan='0'#26: Konachan  (Continuously Updated) 相当完整 - All accessible images are added every few minutes
-index_sankaku='0'#27: Sankaku Channel  (Updates on Hold) 不完整 - API is broken, can't get updates...
-index_animepictures='0'#28: Anime-Pictures.net  (Continuously Updated) 相当完整 - All accessible images are added every few minutes
-index_e621='0'#29: e621.net  (Continuously Updated) 相当完整 - All accessible images are added every few minutes
-index_idolcomplex='0'#30: Idol Complex  (Continuously Updated) 相当完整 - All accessible images are added every few minutes
-index_bcyillust='0'#31: bcy.net Illust  (Updates on Hold) 不完整 - Site changes make further updates unlikley
-index_bcycosplay='0'#32: bcy.net Cosplay  (Updates on Hold) 不完整 - Site changes make further updates unlikley
-index_portalgraphics='0'#33: PortalGraphics.net (Site Closed July 27, 2016) 相当完整 - Most accessible images have been added
+index_hanime='1'#22: H-Anime  (Continuously Updated) 相当完整 - New releases added automaticly, slowly filling out backolog of older material.
+index_movies='1'#23: Movies  (Periodic) 工作正在进行中 - slowly filling out backlog of old material
+index_shows='1'#24: Shows  (Periodic) 工作正在进行中 - slowly filling out backlog of old material
+index_gelbooru='1'#25: Gelbooru  (Continuously Updated) 相当完整 - All accessible images are added every few minutes
+index_konachan='1'#26: Konachan  (Continuously Updated) 相当完整 - All accessible images are added every few minutes
+index_sankaku='1'#27: Sankaku Channel  (Updates on Hold) 不完整 - API is broken, can't get updates...
+index_animepictures='1'#28: Anime-Pictures.net  (Continuously Updated) 相当完整 - All accessible images are added every few minutes
+index_e621='1'#29: e621.net  (Continuously Updated) 相当完整 - All accessible images are added every few minutes
+index_idolcomplex='1'#30: Idol Complex  (Continuously Updated) 相当完整 - All accessible images are added every few minutes
+index_bcyillust='1'#31: bcy.net Illust  (Updates on Hold) 不完整 - Site changes make further updates unlikley
+index_bcycosplay='1'#32: bcy.net Cosplay  (Updates on Hold) 不完整 - Site changes make further updates unlikley
+index_portalgraphics='1'#33: PortalGraphics.net (Site Closed July 27, 2016) 相当完整 - Most accessible images have been added
 index_da='1'#34: deviantArt (Last Updated: July 2017) 落后... - Caught up with dA as of July 2017, but system to keep it up to date is not yet in place. Soon...
-index_pawoo='0'#35: Pawoo.net (On Hold) 落后... - Automatic updater broken
-index_madokami='0'#36: Madokami (Manga) (Last Updated: November 2018) 相当完整
-index_mangadex='0'#37: MangaDex (Continuously Updated) 相当完整 - New chapters are added every few minutes.
+index_pawoo='1'#35: Pawoo.net (On Hold) 落后... - Automatic updater broken
+index_madokami='1'#36: Madokami (Manga) (Last Updated: November 2018) 相当完整
+index_mangadex='1'#37: MangaDex (Continuously Updated) 相当完整 - New chapters are added every few minutes.
 
 #生成bitmask
 db_bitmask = int(index_mangadex+index_madokami+index_pawoo+index_da+index_portalgraphics+index_bcycosplay+index_bcyillust+index_idolcomplex+index_e621+index_animepictures+index_sankaku+index_konachan+index_gelbooru+index_shows+index_movies+index_hanime+index_anime+index_medibang+index_2dmarket+index_hmisc+index_fakku+index_shutterstock+index_reserved+index_animeop+index_yandere+index_nijie+index_drawr+index_danbooru+index_seigaillust+index_anime+index_pixivhistorical+index_pixiv+index_ddbsamples+index_ddbobjects+index_hcg+index_hanime+index_hmags,2)
@@ -131,14 +131,21 @@ async def picfinder(bot, ev: CQEvent):
             #返回了一个或多个结果，判断相似度是否符合要求，取第一条结果
             if float(results['results'][0]['header']['similarity']) > float(results['header']['minimum_similarity']):
                 hit = str(results['results'][0]['header']['similarity'])
-                ext_urls = results['results'][0]['data']['ext_urls'][0]
+                ext_url = ''
+                ext_urls = []
                 preview_url = results['results'][0]['header']['thumbnail']
                 service_name = ''
+                service_names = []
                 illust_id = 0
+                illust_ids = []
                 member_id = -1
+                member_ids = []
                 author_name = ''
+                author_names = []
                 title = ''
+                titles = []
                 index_id = results['results'][0]['header']['index_id']
+                index_ids = []
                 page_string = ''
                 page_match = re.search(r'(_p[\d]+)\.', results['results'][0]['header']['thumbnail'])
                 if page_match:
@@ -147,26 +154,31 @@ async def picfinder(bot, ev: CQEvent):
                 if index_id == 5 or index_id == 6:
                     #5->pixiv 6->pixiv historical
                     service_name='pixiv'
+                    ext_url = results['results'][0]['data']['ext_urls'][0]
                     member_id = results['results'][0]['data']['member_id']
                     illust_id=results['results'][0]['data']['pixiv_id']
                     author_name = results['results'][0]['data']['member_name']
                     title = results['results'][0]['data']['title']
                 elif index_id == 8:
                     service_name='nico nico seiga'
+                    ext_url = results['results'][0]['data']['ext_urls'][0]
                     member_id = results['results'][0]['data']['member_id']
                     illust_id=results['results'][0]['data']['seiga_id']
                     author_name = results['results'][0]['data']['member_name']
                     title = results['results'][0]['data']['title']
-                # elif index_id == 9:#启用此项需自行修改获取返回的结构
-                #     service_name='Danbooru'
-                #     member_id = results['results'][0]['data']['member_id']
-                #     illust_id=results['results'][0]['data']['drawr_id']	
+                elif index_id == 9:#启用此项需自行修改获取返回的结构
+                    service_name='Danbooru'
+                    ext_url = results['results'][0]['data']['source']
+                    illust_id = results['results'][0]['data']['danbooru_id']
+                    author_name = results['results'][0]['data']['creator']
                 elif index_id == 10:
                     service_name='drawr Images'
+                    ext_url = results['results'][0]['data']['ext_urls'][0]
                     member_id = results['results'][0]['data']['member_id']
                     illust_id=results['results'][0]['data']['drawr_id']								
                 elif index_id == 11:
                     service_name='Nijie Images'
+                    ext_url = results['results'][0]['data']['ext_urls'][0]
                     member_id = results['results'][0]['data']['member_id']
                     illust_id=results['results'][0]['data']['nijie_id']
                 # elif index_id == 12:#启用此项需自行修改获取返回的结构
@@ -183,6 +195,7 @@ async def picfinder(bot, ev: CQEvent):
                 #     illust_id=results['results'][0]['data']['nijie_id']
                 elif index_id == 21:
                     service_name='Anime'
+                    ext_url = results['results'][0]['data']['ext_urls'][0]
                     title = results['results'][0]['data']['source']
                     illust_id=results['results'][0]['data']['anidb_aid']
                 # elif index_id == 22:#启用此项需自行修改获取返回的结构
@@ -226,6 +239,7 @@ async def picfinder(bot, ev: CQEvent):
                 #     illust_id=results['results'][0]['data']['nijie_id']
                 elif index_id == 34:
                     service_name='deviantArt'
+                    ext_url = results['results'][0]['data']['ext_urls'][0]
                     illust_id=results['results'][0]['data']['da_id']
                     author_name = results['results'][0]['data']['pawoo_user_username']
                     title = results['results'][0]['data']['title']
@@ -256,14 +270,14 @@ async def picfinder(bot, ev: CQEvent):
                 try:
                     if member_id >= 0:
                         if author_name:
-                            await bot.send(ev, '相似度:'+hit+'\n来源:'+service_name+'\n标题:'+title+'\n作者:'+author_name+'('+str(member_id)+')'+'\n编号:'+str(illust_id)+page_string+'\nurl:'+ext_urls, at_sender=True)
+                            await bot.send(ev, '相似度:'+hit+'\n来源:'+service_name+'\n标题:'+title+'\n作者:'+author_name+'('+str(member_id)+')'+'\n编号:'+str(illust_id)+page_string+'\nurl:'+ext_url, at_sender=True)
                         else:
-                            await bot.send(ev, '相似度:'+hit+'\n来源:'+service_name+'\n标题:'+title+'\n编号:'+str(illust_id)+page_string+'\nurl:'+ext_urls, at_sender=True)
+                            await bot.send(ev, '相似度:'+hit+'\n来源:'+service_name+'\n标题:'+title+'\n编号:'+str(illust_id)+page_string+'\nurl:'+ext_url, at_sender=True)
                     else:
                         if author_name:
-                            await bot.send(ev, '相似度:'+hit+'\n来源:'+service_name+'\n标题:'+title+'\n作者:'+author_name+'\n编号:'+str(illust_id)+page_string+'\nurl:'+ext_urls, at_sender=True)
+                            await bot.send(ev, '相似度:'+hit+'\n来源:'+service_name+'\n标题:'+title+'\n作者:'+author_name+'\n编号:'+str(illust_id)+page_string+'\nurl:'+ext_url, at_sender=True)
                         else:
-                            await bot.send(ev, '相似度:'+hit+'\n来源:'+service_name+'\n标题:'+title+'\n编号:'+str(illust_id)+page_string+'\nurl:'+ext_urls, at_sender=True)
+                            await bot.send(ev, '相似度:'+hit+'\n来源:'+service_name+'\n标题:'+title+'\n编号:'+str(illust_id)+page_string+'\nurl:'+ext_url, at_sender=True)
                 except Exception as e:
                     sv.logger.error(e)
                 
