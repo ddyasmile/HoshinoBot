@@ -129,6 +129,7 @@ async def picfinder(bot, ev: CQEvent):
         
         if int(results['header']['results_returned']) > 0:
             #返回了一个或多个结果，判断相似度是否符合要求，取第一条结果
+            print(results)
             if float(results['results'][0]['header']['similarity']) > float(results['header']['minimum_similarity']):
                 hit = str(results['results'][0]['header']['similarity'])
                 ext_url = ''
@@ -185,10 +186,11 @@ async def picfinder(bot, ev: CQEvent):
                 #     service_name='Yande.re'
                 #     member_id = results['results'][0]['data']['member_id']
                 #     illust_id=results['results'][0]['data']['yande_id']
-                # elif index_id == 18 or index_id == 38:#启用此项需自行修改获取返回的结构
-                #     service_name='H-Misc'
-                #     member_id = results['results'][0]['data']['member_id']
-                #     illust_id=results['results'][0]['data']['nijie_id']
+                elif index_id == 18 or index_id == 38:#启用此项需自行修改获取返回的结构
+                    service_name = results['results'][0]['header']['index_name']
+                    author_name = results['results'][0]['data']['creator'][0]
+                    title = results['results'][0]['data']['jp_name']
+                    ext_url = results['results'][0]['data']['source']
                 # elif index_id == 19:#启用此项需自行修改获取返回的结构
                 #     service_name='2D-Market'
                 #     member_id = results['results'][0]['data']['member_id']
@@ -252,10 +254,12 @@ async def picfinder(bot, ev: CQEvent):
                 #     service_name='Madokami (Manga)'
                 #     member_id = results['results'][0]['data']['member_id']
                 #     illust_id=results['results'][0]['data']['nijie_id']
-                # elif index_id == 37:#启用此项需自行修改获取返回的结构
-                #     service_name='MangaDex'
-                #     member_id = results['results'][0]['data']['member_id']
-                #     illust_id=results['results'][0]['data']['nijie_id']
+                elif index_id == 37:#启用此项需自行修改获取返回的结构
+                    service_name='MangaDex'
+                    ext_url = results['results'][0]['data']['ext_urls'][0]
+                    illust_id=results['results'][0]['data']['md_id']
+                    author_name = results['results'][0]['data']['artist']
+                    title = results['results'][0]['data']['source']
                 else:
                     #unknown
                     sv.logger.info(f'未知的索引编号:{index_id}')
