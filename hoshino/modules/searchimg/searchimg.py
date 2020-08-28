@@ -10,9 +10,13 @@ from collections import OrderedDict
 from hoshino import Service
 from hoshino.typing import CQEvent, MessageSegment
 
-sv = Service('picfinder', help_='''
-[识图+图片] 查询图片来源
-'''.strip())
+_help = """[搜图] 然后发送一张图即可
+查到原图会返回一张缩略图然后发送来源
+只有缩略图没有来源请[a酱来杯咖啡]联系维护组
+返回相似度低表示没有查到原图
+"""
+
+sv = Service('picfinder', bundle='识图', help_=_help)
 
 api_key="da234a4bc5f6cc1b28b9995f3c97b9923ababad3"#https://saucenao.com/自行申请
 EnableRename=False

@@ -11,7 +11,7 @@ EXCEED_NOTICE = f'您今天已经冲过{_max}次了，请明早5点后再来！'
 _nlmt = DailyNumberLimiter(_max)
 _flmt = FreqLimiter(5)
 
-sv = Service('setu', manage_priv=priv.SUPERUSER, enable_on_default=True, visible=False)
+sv = Service('setu', manage_priv=priv.SUPERUSER, enable_on_default=True, visible=False, bundle='❌', help_='[来一张色图]')
 setu_folder = R.img('setu/').path
 
 def setu_gener():

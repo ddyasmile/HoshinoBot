@@ -8,7 +8,15 @@ from .spider import *
 from .subscriber import *
 from hoshino.typing import *
 
-sv = Service('bili-subscribe-live', bundle='Bilibili订阅', help_='直播间开播提醒')
+_help = """B站直播间开播下播提醒服务
+==============
+[live订阅 <直播间号>] 订阅直播间
+[live退订 <直播间号>] 取消订阅直播间
+[live订阅查询] 查看本群已订阅的直播间
+[开播了吗 <直播间号>] 查看特定直播间是否开播
+"""
+
+sv = Service('bili-subscribe-live', bundle='Bilibili订阅', help_=_help)
 ss = Subscriber()
 sp = BiliLiveSpider()
 

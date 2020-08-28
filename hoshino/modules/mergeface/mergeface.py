@@ -31,7 +31,14 @@ params = {
 
 tm_url = ['template_url', 'merge_url']
 
-sv = Service('mergeface')
+_help = """作者艾琳有栖
+接口https://console.faceplusplus.com.cn/
+
+发送 [换脸]
+然后发2张图就可
+"""
+
+sv = Service('mergeface', bundle='人脸合成', help_=_help)
 
 wait_list = {}
 

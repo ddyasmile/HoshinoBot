@@ -8,7 +8,15 @@ from .spider import *
 from .subscriber import *
 from hoshino.typing import *
 
-sv = Service('bili-subscribe-video', bundle='Bilibili订阅', help_='UP主更新提醒')
+_help = """B站UP主更新提醒服务
+==============
+[B站订阅 <UID>] 订阅UP主
+[B站退订 <UID>] 取消订阅UP主
+[B站订阅查询] 查看本群已订阅的UP主
+[新视频 <UID>] 查看UP主最新的3个视频
+"""
+
+sv = Service('bili-subscribe-video', bundle='Bilibili订阅', help_=_help)
 ss = Subscriber()
 sp = BiliVideoSpider()
 

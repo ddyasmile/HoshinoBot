@@ -8,14 +8,12 @@ from .ditter import *
 from hoshino.typing import *
 
 help_ = """Dit 消息记录系统
-<参数>：参数
-[可选参数]：可选参数
------
-dit add <msg> 添加记录 返回一个 id
-dit del <id> 删除记录 返回一个 id
-dit modify <id> <msg> 修改记录 返回一个 id
-dit log [num] 返回num条记录，缺省为5条
-dit last 返回上一条记录
+==============
+[dit add <msg>] 添加记录 返回一个 id
+[dit del <id>] 删除记录 返回一个 id
+[dit modify <id> <msg>] 修改记录 返回一个 id
+[dit log <num>] 返回num条记录，缺省为5条
+[dit last] 返回上一条记录
 """
 
 sv = Service('dit', bundle='dit', help_=help_)

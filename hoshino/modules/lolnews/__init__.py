@@ -1,7 +1,7 @@
 from hoshino import Service
 from .spider import *
 
-sv = Service('lol-news', bundle='lol订阅', help_='LOL官网新闻')
+sv = Service('lol-news', bundle='lol订阅', help_='定时更新LOL官网新闻')
 
 async def news_poller(spider: BaseSpider, sv: Service, TAG):
     if not spider.item_cache:
