@@ -11,7 +11,7 @@ _help = """[水量] 获取今日发言数前五名
 [完整水量排位] 获取今日发言数总榜
 """
 
-sv = Service('msgcounter', enable_on_default=True, bundle='水量统计', help_='群员发言数统计')
+sv = Service('msgcounter', enable_on_default=True, bundle='水量统计', help_=_help)
 
 _msgcounter:Dict[int, Dict[str, int]] = {}
 
